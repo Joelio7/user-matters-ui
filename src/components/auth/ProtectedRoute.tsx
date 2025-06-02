@@ -1,12 +1,12 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { ROUTES } from '../../utils/constants';
-import LoadingSpinner from '../common/LoadingSpinner';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { ROUTES } from "../../utils/constants";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  requiredRole?: 'admin' | 'customer';
+  requiredRole?: "admin" | "customer";
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({

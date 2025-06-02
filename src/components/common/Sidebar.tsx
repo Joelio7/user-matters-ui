@@ -1,24 +1,19 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { ROUTES } from '../../utils/constants';
-import { 
-  LayoutDashboard, 
-  Users, 
-  FileText, 
-  UserCircle 
-} from 'lucide-react';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { ROUTES } from "../../utils/constants";
+import { LayoutDashboard, Users, FileText, UserCircle } from "lucide-react";
 
 const Sidebar: React.FC = () => {
   const { user } = useAuth();
 
   const navigation = [
-    { name: 'Dashboard', href: ROUTES.DASHBOARD, icon: LayoutDashboard },
-    ...(user?.role === 'admin' ? [
-      { name: 'Customers', href: ROUTES.CUSTOMERS, icon: Users }
-    ] : []),
-    { name: 'Matters', href: ROUTES.MATTERS, icon: FileText },
-    { name: 'Profile', href: ROUTES.PROFILE, icon: UserCircle },
+    { name: "Dashboard", href: ROUTES.DASHBOARD, icon: LayoutDashboard },
+    ...(user?.role === "admin"
+      ? [{ name: "Customers", href: ROUTES.CUSTOMERS, icon: Users }]
+      : []),
+    { name: "Matters", href: ROUTES.MATTERS, icon: FileText },
+    { name: "Profile", href: ROUTES.PROFILE, icon: UserCircle },
   ];
 
   return (
@@ -32,8 +27,8 @@ const Sidebar: React.FC = () => {
                 className={({ isActive }) =>
                   `flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? "bg-blue-50 text-blue-700 border-r-2 border-blue-700"
+                      : "text-gray-700 hover:bg-gray-50"
                   }`
                 }
               >

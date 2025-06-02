@@ -1,9 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  AuthState,
-  LoginCredentials,
-  SignupData,
-} from "../../types/auth";
+import { AuthState, LoginCredentials, SignupData } from "../../types/auth";
 import { authApi } from "../api/authApi";
 import { apiClient } from "../api/apiClient";
 import { User } from "../../types/user";
@@ -26,7 +22,7 @@ export const loginUser = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message || "Login failed");
     }
-  },
+  }
 );
 
 export const signupUser = createAsyncThunk(
@@ -39,7 +35,7 @@ export const signupUser = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message || "Signup failed");
     }
-  },
+  }
 );
 
 export const getProfile = createAsyncThunk(
@@ -50,7 +46,7 @@ export const getProfile = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message || "Failed to get profile");
     }
-  },
+  }
 );
 
 export const updateProfile = createAsyncThunk(
@@ -61,7 +57,7 @@ export const updateProfile = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message || "Failed to update profile");
     }
-  },
+  }
 );
 
 const authSlice = createSlice({

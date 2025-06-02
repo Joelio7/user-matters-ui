@@ -1,8 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../store';
-
-import { MatterFormData } from '../types/matter';
-import { createCustomerMatter, createMatter, deleteMatter, fetchCustomerMatters, fetchMatters, setSelectedMatter, updateMatter } from '../store/slices/mattersSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../store";
+import {
+  fetchMatters,
+  fetchCustomerMatters,
+  createMatter,
+  createCustomerMatter,
+  updateMatter,
+  deleteMatter,
+  deleteCustomerMatter,
+  setSelectedMatter,
+} from "../store/slices/mattersSlice";
+import { MatterFormData } from "../types/matter";
 
 export const useMatters = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +28,10 @@ export const useMatters = () => {
     return dispatch(createMatter(matterData));
   };
 
-  const addCustomerMatter = async (customerId: number, data: MatterFormData) => {
+  const addCustomerMatter = async (
+    customerId: number,
+    data: MatterFormData
+  ) => {
     return dispatch(createCustomerMatter({ customerId, data }));
   };
 
@@ -32,18 +43,23 @@ export const useMatters = () => {
     return dispatch(deleteMatter(id));
   };
 
+  const removeCustomerMatter = async (customerId: number, id: number) => {
+    return dispatch(deleteCustomerMatter({ customerId, id }));
+  };
+
   const selectMatter = (matter: any) => {
     dispatch(setSelectedMatter(matter));
   };
 
   return {
-    matters,
+    ...matters,
     getAllMatters,
     getCustomerMatters,
     addMatter,
     addCustomerMatter,
     editMatter,
     removeMatter,
+    removeCustomerMatter,
     selectMatter,
   };
 };

@@ -1,8 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ApiError } from "../../types/api";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+
+
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 class ApiClient {
   private instance: AxiosInstance;
@@ -28,7 +29,7 @@ class ApiClient {
         }
         return config;
       },
-      (error) => Promise.reject(error)
+      (error) => Promise.reject(error),
     );
 
     this.instance.interceptors.response.use(
@@ -39,7 +40,7 @@ class ApiClient {
           window.location.href = "/login";
         }
         return Promise.reject(this.formatError(error));
-      }
+      },
     );
   }
 
@@ -75,12 +76,12 @@ class ApiClient {
   public async post<T, D = any>(
     url: string,
     data?: D,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<T> {
     const response: AxiosResponse<T> = await this.instance.post(
       url,
       data,
-      config
+      config,
     );
     return response.data;
   }
@@ -88,12 +89,12 @@ class ApiClient {
   public async put<T, D = any>(
     url: string,
     data?: D,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<T> {
     const response: AxiosResponse<T> = await this.instance.put(
       url,
       data,
-      config
+      config,
     );
     return response.data;
   }
@@ -101,12 +102,12 @@ class ApiClient {
   public async patch<T, D = any>(
     url: string,
     data?: D,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<T> {
     const response: AxiosResponse<T> = await this.instance.patch(
       url,
       data,
-      config
+      config,
     );
     return response.data;
   }

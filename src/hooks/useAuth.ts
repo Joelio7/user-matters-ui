@@ -1,8 +1,14 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../store';
-import { loginUser, signupUser, logout, getProfile, updateProfile } from '../store/slices/authSlice';
-import { LoginCredentials, SignupData } from '../types/auth';
-import { User } from '../types/user';
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../store";
+import {
+  loginUser,
+  signupUser,
+  logout,
+  getProfile,
+  updateProfile,
+} from "../store/slices/authSlice";
+import { LoginCredentials, SignupData } from "../types/auth";
+import { User } from "../types/user";
 
 export const useAuth = () => {
   const dispatch = useDispatch<AppDispatch>();

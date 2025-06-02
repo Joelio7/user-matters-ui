@@ -1,9 +1,9 @@
-import { apiClient } from './apiClient';
-import { Customer, CustomerFormData } from '../../types/customer';
+import { apiClient } from "./apiClient";
+import { Customer, CustomerFormData } from "../../types/customer";
 
 export const customersApi = {
   getAll: async (): Promise<Customer[]> => {
-    return apiClient.get<Customer[]>('/customers');
+    return apiClient.get<Customer[]>("/customers");
   },
 
   getById: async (id: number): Promise<Customer> => {
@@ -11,10 +11,13 @@ export const customersApi = {
   },
 
   create: async (customerData: CustomerFormData): Promise<Customer> => {
-    return apiClient.post<Customer>('/customers', customerData);
+    return apiClient.post<Customer>("/customers", customerData);
   },
 
-  update: async (id: number, customerData: Partial<CustomerFormData>): Promise<Customer> => {
+  update: async (
+    id: number,
+    customerData: Partial<CustomerFormData>
+  ): Promise<Customer> => {
     return apiClient.put<Customer>(`/customers/${id}`, customerData);
   },
 

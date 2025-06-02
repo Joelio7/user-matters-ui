@@ -5,27 +5,31 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "./store";
+import { Provider, useDispatch } from "react-redux";
+import { store, AppDispatch } from "./store";
 import { useAuth } from "./hooks/useAuth";
+import { getProfile } from "./store/slices/authSlice";
 import { ROUTES } from "./utils/constants";
 
-// Components
 import Layout from "./components/common/Layout";
-
-
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import SignupPage from "./pages/SignupPage";
+
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import DashboardPage from "./pages/DashboardPage";
+import CustomersPage from "./pages/CustomersPage";
+import MattersPage from "./pages/MattersPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const AppContent: React.FC = () => {
-  const { isAuthenticated, fetchProfile, token } = useAuth();
+  const { isAuthenticated, token } = useAuth();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (token && isAuthenticated) {
-      fetchProfile();
+      dispatch(getProfile());
     }
-  }, [token, isAuthenticated, fetchProfile]);
+  }, [token, isAuthenticated, dispatch]);
 
   return (
     <Router>
@@ -50,6 +54,7 @@ const AppContent: React.FC = () => {
             )
           }
         />
+
         <Route
           path="/"
           element={
@@ -59,7 +64,13 @@ const AppContent: React.FC = () => {
           }
         >
           <Route index element={<Navigate to={ROUTES.DASHBOARD} replace />} />
+          <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+          <Route path={ROUTES.CUSTOMERS} element={<CustomersPage />} />
+          <Route path={ROUTES.MATTERS} element={<MattersPage />} />
+          <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
         </Route>
+
+        <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
       </Routes>
     </Router>
   );

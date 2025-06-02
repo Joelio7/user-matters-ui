@@ -1,9 +1,9 @@
-import { apiClient } from './apiClient';
-import { Matter, MatterFormData } from '../../types/matter';
+import { apiClient } from "./apiClient";
+import { Matter, MatterFormData } from "../../types/matter";
 
 export const mattersApi = {
   getAll: async (): Promise<Matter[]> => {
-    return apiClient.get<Matter[]>('/matters');
+    return apiClient.get<Matter[]>("/matters");
   },
 
   getById: async (id: number): Promise<Matter> => {
@@ -15,14 +15,23 @@ export const mattersApi = {
   },
 
   create: async (matterData: MatterFormData): Promise<Matter> => {
-    return apiClient.post<Matter>('/matters', matterData);
+    return apiClient.post<Matter>("/matters", matterData);
   },
 
-  createForCustomer: async (customerId: number, matterData: MatterFormData): Promise<Matter> => {
-    return apiClient.post<Matter>(`/customers/${customerId}/matters`, matterData);
+  createForCustomer: async (
+    customerId: number,
+    matterData: MatterFormData
+  ): Promise<Matter> => {
+    return apiClient.post<Matter>(
+      `/customers/${customerId}/matters`,
+      matterData
+    );
   },
 
-  update: async (id: number, matterData: Partial<MatterFormData>): Promise<Matter> => {
+  update: async (
+    id: number,
+    matterData: Partial<MatterFormData>
+  ): Promise<Matter> => {
     return apiClient.put<Matter>(`/matters/${id}`, matterData);
   },
 
@@ -31,14 +40,20 @@ export const mattersApi = {
     id: number,
     matterData: Partial<MatterFormData>
   ): Promise<Matter> => {
-    return apiClient.put<Matter>(`/customers/${customerId}/matters/${id}`, matterData);
+    return apiClient.put<Matter>(
+      `/customers/${customerId}/matters/${id}`,
+      matterData
+    );
   },
 
   delete: async (id: number): Promise<void> => {
     return apiClient.delete<void>(`/matters/${id}`);
   },
 
-  deleteCustomerMatter: async (customerId: number, id: number): Promise<void> => {
+  deleteCustomerMatter: async (
+    customerId: number,
+    id: number
+  ): Promise<void> => {
     return apiClient.delete<void>(`/customers/${customerId}/matters/${id}`);
   },
 };

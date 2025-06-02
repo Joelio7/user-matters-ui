@@ -1,9 +1,5 @@
 import { apiClient } from "./apiClient";
-import {
-  AuthResponse,
-  LoginCredentials,
-  SignupData,
-} from "../../types/auth";
+import { AuthResponse, LoginCredentials, SignupData } from "../../types/auth";
 import { User } from "../../types/user";
 
 export const authApi = {
