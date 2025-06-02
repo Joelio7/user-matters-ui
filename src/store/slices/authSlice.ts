@@ -3,10 +3,10 @@ import {
   AuthState,
   LoginCredentials,
   SignupData,
-  User,
 } from "../../types/auth";
 import { authApi } from "../api/authApi";
 import { apiClient } from "../api/apiClient";
+import { User } from "../../types/user";
 
 const initialState: AuthState = {
   user: null,

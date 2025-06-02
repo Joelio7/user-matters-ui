@@ -1,14 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../store';
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../store";
+
+import { CustomerFormData } from "../types/customer";
 import {
-  fetchCustomers,
-  fetchCustomerById,
   createCustomer,
-  updateCustomer,
   deleteCustomer,
+  fetchCustomerById,
+  fetchCustomers,
   setSelectedCustomer,
-} from '../store/slices/customersSlice';
-import { CustomerFormData } from '../types/customer';
+  updateCustomer,
+} from "../store/slices/customersSlice";
 
 export const useCustomers = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -39,7 +40,7 @@ export const useCustomers = () => {
   };
 
   return {
-    ...customers,
+    customers,
     getAllCustomers,
     getCustomerById,
     addCustomer,

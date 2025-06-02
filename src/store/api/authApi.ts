@@ -3,8 +3,8 @@ import {
   AuthResponse,
   LoginCredentials,
   SignupData,
-  User,
 } from "../../types/auth";
+import { User } from "../../types/user";
 
 export const authApi = {
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {

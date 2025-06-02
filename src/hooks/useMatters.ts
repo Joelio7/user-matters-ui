@@ -1,15 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
-import {
-  fetchMatters,
-  fetchCustomerMatters,
-  createMatter,
-  createCustomerMatter,
-  updateMatter,
-  deleteMatter,
-  setSelectedMatter,
-} from '../store/slices/mattersSlice';
+
 import { MatterFormData } from '../types/matter';
+import { createCustomerMatter, createMatter, deleteMatter, fetchCustomerMatters, fetchMatters, setSelectedMatter, updateMatter } from '../store/slices/mattersSlice';
 
 export const useMatters = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,7 +37,7 @@ export const useMatters = () => {
   };
 
   return {
-    ...matters,
+    matters,
     getAllMatters,
     getCustomerMatters,
     addMatter,
