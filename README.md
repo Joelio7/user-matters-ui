@@ -20,7 +20,6 @@ A modern React TypeScript application for managing customer matters with role-ba
 - **Styling**: Tailwind CSS
 - **HTTP Client**: Axios
 - **Icons**: Lucide React
-- **Code Quality**: Trunk (linting and formatting)
 
 ## Prerequisites
 
@@ -116,9 +115,6 @@ src/
 | Script | Description |
 |--------|-------------|
 | `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
 
 ## Code Quality
 
@@ -127,17 +123,7 @@ This project uses [Trunk](https://trunk.io/) for code quality and consistency:
 - **Prettier** for code formatting
 - **ESLint** for code linting
 - **TypeScript** for type checking
-- **Various security scanners** (checkov, osv-scanner, trufflehog)
 
-To run checks manually:
-```bash
-trunk check
-```
-
-To format code:
-```bash
-trunk fmt
-```
 
 ## API Integration
 
@@ -164,14 +150,7 @@ The frontend expects a REST API with the following endpoints:
 - `GET /customers/:id/matters` - Get customer matters
 - `POST /customers/:id/matters` - Create matter for customer
 
-## Deployment
 
-### Using Vite Preview
-
-```bash
-npm run build
-npm run preview
-```
 
 ### Using Static Hosting
 
