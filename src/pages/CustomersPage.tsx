@@ -15,22 +15,26 @@ import CustomerDetails from "../components/dashboard/CustomerDetails";
 
 const CustomersPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { customers, getAllCustomers, removeCustomer, isLoading, error } =
-    useCustomers();
+  const {
+    customers,
+    selectedCustomer,
+    getAllCustomers,
+    removeCustomer,
+    selectCustomer,
+    isLoading,
+    error,
+  } = useCustomers();
   const [showCustomerForm, setShowCustomerForm] = useState(false);
-  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(
-    null,
-  );
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
 
   useEffect(() => {
     console.log("CustomersPage: Loading customers...");
     getAllCustomers();
-  }, []); // Fixed: removed getAllCustomers from dependencies to prevent infinite loop
+  }, []);
 
   const handleCustomerClick = async (customer: Customer) => {
     console.log("Clicking customer:", customer);
-    setSelectedCustomer(customer);
+    selectCustomer(customer); // Use Redux action instead of local state
     // Fetch matters for this customer
     dispatch(fetchCustomerMatters(customer.id));
   };
@@ -45,7 +49,7 @@ const CustomersPage: React.FC = () => {
       await removeCustomer(customer.id);
       // If we're currently viewing this customer, go back to list
       if (selectedCustomer?.id === customer.id) {
-        setSelectedCustomer(null);
+        selectCustomer(null); // Use Redux action
       }
       // Refresh customers list
       getAllCustomers();
@@ -61,7 +65,7 @@ const CustomersPage: React.FC = () => {
   };
 
   const handleBackToList = () => {
-    setSelectedCustomer(null);
+    selectCustomer(null); // Use Redux action instead of local state
   };
 
   if (isLoading) {

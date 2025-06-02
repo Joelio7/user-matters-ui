@@ -130,14 +130,17 @@ const customersSlice = createSlice({
       })
       .addCase(updateCustomer.fulfilled, (state, action) => {
         state.isLoading = false;
+        const updatedCustomer = action.payload;
+
         const index = state.customers.findIndex(
-          (c) => c.id === action.payload.id
+          (c) => c.id === updatedCustomer.id
         );
         if (index !== -1) {
-          state.customers[index] = action.payload;
+          state.customers[index] = updatedCustomer;
         }
-        if (state.selectedCustomer?.id === action.payload.id) {
-          state.selectedCustomer = action.payload;
+
+        if (state.selectedCustomer?.id === updatedCustomer.id) {
+          state.selectedCustomer = updatedCustomer;
         }
       })
       .addCase(updateCustomer.rejected, (state, action) => {
